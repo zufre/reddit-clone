@@ -1,25 +1,52 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import RedditPost from "./RedditPost";
+import AddPost from "./AddPost";
+import moment from "moment";
+import _ from "lodash";
+import firebase from "firebase";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      redditPosts: {}
+    };
+    firebase
+      .database()
+      .ref("posts")
+      .on("value", snapshot => {
+        this.setState({ redditPosts: snapshot.val() });
+      });
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <AddPost
+          onAdd={redditPost => {
+            const newRedditPost = {
+              ...redditPost,
+              comments: 5,
+              submitted: moment().format()
+            };
+            firebase
+              .database()
+              .ref("posts")
+              .push(newRedditPost);
+          }}
+        />
+        {_.map(this.state.redditPosts, redditPost => {
+          return (
+            <RedditPost
+              key={redditPost.title}
+              title={redditPost.title}
+              comments={redditPost.comments}
+              submitted={redditPost.submitted}
+            />
+          );
+        })}
       </div>
     );
   }
