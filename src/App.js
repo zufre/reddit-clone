@@ -31,7 +31,7 @@ class App extends Component {
           onAdd={redditPost => {
             const newRedditPost = {
               ...redditPost,
-              comments: 5,
+              comments: 0,
               submitted: moment().format()
             };
             firebase
