@@ -25,7 +25,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Simple Reddit Clone</h1>
-        <h4>Exercise in React to interact with Firebase</h4>
+        <h4>Exercise in React to interact with the Firebase DB</h4>
         <br />
         <AddPost
           onAdd={redditPost => {
