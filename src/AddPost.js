@@ -8,7 +8,12 @@ export default class AddPost extends Component {
         <input
           onChange={event => this.setState({ title: event.target.value })}
         />
-        <button onClick={() => this.props.onAdd(this.state)}>Add</button>
+        <button
+          style={{ margin: "5px", backgroundColor: "lightblue" }}
+          onClick={() => this.props.onAdd(this.state)}
+        >
+          Add
+        </button>
       </div>
     );
   }
