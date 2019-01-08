@@ -3,14 +3,13 @@ import React, { Component } from "react";
 export default class AddPost extends Component {
   render() {
     return (
-      <div>
+      <div style={{ marginButtom: "15px" }}>
         <p>Title</p>
         <input
           onChange={event => this.setState({ title: event.target.value })}
         />
         <button
           style={{
-            marginButtom: "15px",
             margin: "5px",
             backgroundColor: "lightblue"
           }}
