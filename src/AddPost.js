@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export default class AddPost extends Component {
   render() {
     return (
-      <div style={{ marginButtom: "15px" }}>
+      <div style={{ marginBottom: "15px" }}>
         <p>Title</p>
         <input
           onChange={event => this.setState({ title: event.target.value })}
